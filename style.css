@@ -1,0 +1,219 @@
+:root {
+    --card-bg: #ed90d3; 
+    --text-color: #000000;
+    --accent-red: #fc0159;
+    --heart-color: #ff0000; /* Color para los corazones flotantes */
+}
+
+body {
+    background: #f8f4f4; 
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden; /* Evita que aparezca barra de scroll por los corazones */
+}
+
+/* --- ESTILOS DE LOS CORAZONES FLOTANTES --- */
+
+.heart {
+    position: absolute;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--heart-color);
+    transform: rotate(45deg);
+    opacity: 0.5;
+    z-index: -1; /* Pasa por detrás de la tarjeta */
+    animation: floatUp 10s infinite ease-in;
+    pointer-events: none;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: var(--heart-color);
+    border-radius: 50%;
+}
+
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: -10px; top: 0; }
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(45deg) scale(0.5);
+        opacity: 0;
+    }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.7; }
+    100% {
+        transform: translateY(-110vh) rotate(45deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* --- TU CÓDIGO ORIGINAL ACTUALIZADO --- */
+
+.text-center {
+    text-align: center;
+}
+
+.card {
+    background-color: var(--card-bg);
+    width: 615px;
+    padding: 40px;
+    border-radius: 50px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 10; /* Asegura que la tarjeta esté por encima de los corazones */
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message-col {
+    flex: 1;
+    color: var(--text-color);
+}
+
+.intro { font-weight: bold; margin-bottom: 20px; }
+.body-text { margin: 15px 0; font-size: 0.95rem; line-height: 1.4; }
+
+.signature { 
+    margin-top: 30px; 
+    font-weight: bold; 
+    font-style: italic; 
+}
+
+.tree-col img {
+    width: 250px; /* Aumentamos el tamaño */
+    aspect-ratio: 1 / 1;/* Forzamos que sea un cuadrado perfecto */
+    object-fit: cover;  /* Evita que la imagen se estire o se vea rara */
+    border-radius: 12px; /* Reducimos el redondeo para que se vea "más cuadrada" */
+    border: 4px solid rgb(252, 3, 3);/* Un pequeño marco para que resalte en el fondo rosa */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    animation: floatingImg 3s ease-in-out infinite;
+}
+
+/* Cambié el nombre de tu animación original para no confundirla con la de los corazones */
+@keyframes floatingImg {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.bottom-section {
+    margin-top: 20px;
+    border-top: 2px solid #5d4037; 
+    padding-top: 15px;
+    color: var(--text-color);
+}
+
+.counter-label { 
+    font-size: 0.9rem; 
+    margin-bottom: 10px; 
+    font-weight: bold;
+}
+
+#timer {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+#timer span {
+    font-size: 1.6rem;
+    color: var(--accent-red); 
+    font-weight: bold;
+}
+
+.time-detail {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.time-detail span {
+    font-size: 1.2rem !important; 
+    color: var(--text-color) !important;
+}
+
+/* --- MEJORA DEL RAMO DE FLORES CON MOVIMIENTO --- */
+
+.bottom-section {
+    margin-top: 20px;
+    border-top: 2px solid #5d4037; 
+    padding-top: 45px; 
+    color: var(--text-color);
+    position: relative; 
+}
+
+/* El ramo de flores con animación de balanceo */
+.bottom-section::before {
+    content: "💐🌷🌹🌻"; 
+    position: absolute;
+    top: -20px; 
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    background-color: var(--card-bg); 
+    padding: 0 15px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    z-index: 1;
+    
+    /* Añadimos la animación aquí */
+    animation: sway 3s ease-in-out infinite;
+    display: inline-block;
+    transform-origin: bottom center; /* El balanceo sale desde la base */
+}
+
+/* El moñito que también se mueve sutilmente */
+.bottom-section::after {
+    content: "🎀";
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    z-index: 2;
+    
+    /* Animación sincronizada con las flores */
+    animation: sway 3s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+/* --- DEFINICIÓN DEL MOVIMIENTO (ANIMACIÓN) --- */
+
+@keyframes sway {
+    0%, 100% {
+        /* Mantiene el centrado (translateX) y rota un poco a la izquierda */
+        transform: translateX(-50%) rotate(-5deg);
+    }
+    50% {
+        /* Rota un poco a la derecha */
+        transform: translateX(-50%) rotate(5deg);
+    }
+}
+
+/*TAMAÑOS CELULARES Y COMPUTADORAS*/
+
+/* Estilo para computadoras */
+body { background-color: white; }
+
+/* Cuando la pantalla sea de 600px o menos (celulares) */
+@media (max-width: 600px) {
+  body { background-color: lightblue; }
+  .columna { width: 100%; } /* Las columnas se apilan una sobre otra */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniversario Anderson - Leslye</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="card-container">
+        <div class="card">
+            <div class="top-section">
+            <div class="message-col">
+           <center><p class="intro">Para El Amor de Mi Vida: Leslye Olivares.</p></center>
+           <center><p class="body-text text-center">Si Pudiera Elegir Un Lugar seguro, Sería a Tu Lado.</p></center>
+           <center><p class="body-text">Cuanto Más Tiempo Estoy Contigo Más Te Amo.</p></center>
+            <p class="signature text-center"> I Love You!</p></center>
+    </div>
+            <div class="tree-col">
+                    <img src="../img/love.png.jpeg"  class="floating-tree">
+                </div>
+            </div>
+
+            <div class="bottom-section">
+                <p class="counter-label text-center">Mi Amor Por Ti Comenzó Hace...</p>
+                
+                <div id="timer" class="text-center">
+                    <span id="years">0</span> Años 
+                    <span id="months">0</span> Meses
+                    <span id="days">0</span> Días
+                    
+                    <div class="time-detail">
+                        <span id="hours">00</span>Horas 
+                        <span id="minutes">00</span>Minutos 
+                        <span id="seconds">00</span>Segundos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('Registro de SW exitoso', reg))
+        .catch(err => console.warn('Error al registrar SW', err));
+    }
+  </script>
+</body>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
